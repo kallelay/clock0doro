@@ -243,6 +243,7 @@ Partial Class MainForm
         ' 
         ' CheckBox1
         ' 
+        CheckBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         CheckBox1.AutoSize = True
         CheckBox1.BackColor = SystemColors.AppWorkspace
         CheckBox1.Checked = True
