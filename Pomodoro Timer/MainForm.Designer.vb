@@ -39,6 +39,7 @@ Partial Class MainForm
         Panel1 = New Label()
         Panel2 = New Label()
         ToolTip1 = New ToolTip(components)
+        Button3 = New Button()
         CheckBox1 = New CheckBox()
         SuspendLayout()
         ' 
@@ -241,17 +242,39 @@ Partial Class MainForm
         Panel2.Size = New Size(22, 194)
         Panel2.TabIndex = 9
         ' 
+        ' Button3
+        ' 
+        Button3.AutoSizeMode = AutoSizeMode.GrowAndShrink
+        Button3.BackColor = Color.FromArgb(CByte(40), CByte(40), CByte(40))
+        Button3.FlatAppearance.BorderColor = Color.Gray
+        Button3.FlatStyle = FlatStyle.Flat
+        Button3.Font = New Font("Arial", 6.75F, FontStyle.Bold, GraphicsUnit.Point)
+        Button3.ForeColor = Color.FromArgb(CByte(224), CByte(224), CByte(224))
+        Button3.ImageAlign = ContentAlignment.BottomCenter
+        Button3.Location = New Point(4, 2)
+        Button3.Name = "Button3"
+        Button3.Size = New Size(20, 20)
+        Button3.TabIndex = 11
+        Button3.Text = "⚙"
+        Button3.TextAlign = ContentAlignment.TopCenter
+        ToolTip1.SetToolTip(Button3, "Settings")
+        Button3.UseCompatibleTextRendering = True
+        Button3.UseMnemonic = False
+        Button3.UseVisualStyleBackColor = False
+        ' 
         ' CheckBox1
         ' 
         CheckBox1.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         CheckBox1.AutoSize = True
-        CheckBox1.BackColor = SystemColors.AppWorkspace
+        CheckBox1.BackColor = Color.Black
         CheckBox1.Checked = True
         CheckBox1.CheckState = CheckState.Checked
-        CheckBox1.Location = New Point(157, 7)
-        CheckBox1.Margin = New Padding(2)
+        CheckBox1.FlatStyle = FlatStyle.Flat
+        CheckBox1.ForeColor = Color.White
+        CheckBox1.Location = New Point(160, 7)
+        CheckBox1.Margin = New Padding(2, 2, 2, 2)
         CheckBox1.Name = "CheckBox1"
-        CheckBox1.Size = New Size(15, 14)
+        CheckBox1.Size = New Size(12, 11)
         CheckBox1.TabIndex = 10
         CheckBox1.UseVisualStyleBackColor = False
         ' 
@@ -260,6 +283,7 @@ Partial Class MainForm
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(177, 195)
+        Controls.Add(Button3)
         Controls.Add(CheckBox1)
         Controls.Add(syncbt)
         Controls.Add(Panel2)
@@ -314,4 +338,5 @@ Partial Class MainForm
     Friend WithEvents Button2 As Button
     Friend WithEvents CheckBox1 As CheckBox
     Friend WithEvents syncbt As Button
+    Friend WithEvents Button3 As Button
 End Class

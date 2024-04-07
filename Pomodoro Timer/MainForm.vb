@@ -1,4 +1,7 @@
 ﻿Imports System.Math
+Imports System.Configuration
+Imports System.Windows.Forms.PropertyGridInternal
+
 Public Class MainForm
 
 
@@ -7,6 +10,9 @@ Public Class MainForm
     'Times for work and break
     Public WORK_TIME% = 25 * 60 '+ 1
     Public BREAK_TIME% = 5 * 60 '+ 1
+
+    Public alarm_stop = "alarm14.wav"
+    Public alarm_start = "ala1.wav"
 
 
     ' Public LABEL_BREAK_COLOR = Color.FromArgb(119, 221, 119)
@@ -128,9 +134,9 @@ Public Class MainForm
             If CheckBox1.Checked Then
 
                 If CURRENT_MODE = MODES.break Then
-                    My.Computer.Audio.Play("ala1.wav")
+                    My.Computer.Audio.Play(alarm_stop)
                 Else
-                    My.Computer.Audio.Play("alarm14.wav")
+                    My.Computer.Audio.Play(alarm_start)
                 End If
             End If
 
@@ -384,18 +390,33 @@ skip_resizable:
 
 
     Private Sub Syncbt_Click(sender As Object, e As EventArgs) Handles syncbt.Click
-        curTime = (3600 - (Now.Minute * 60 + Now.Second)) Mod 30 * 60
+        curTime = (3600 - (Now.Minute * 60 + Now.Second)) Mod (BREAK_TIME + WORK_TIME)
 
         Dim cct = curTime + 0
-        If curTime < 5 * 60 Then
+        If curTime < BREAK_TIME Then
             startPomodoro(MODES.break)
         Else
             startPomodoro(MODES.work)
-            cct -= 5 * 60
+            cct -= BREAK_TIME
         End If
         curTime = cct
 
     End Sub
 
+    Private Sub MainForm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        '"ala1.wav"
+
+
+        'If My.Application.
+        WORK_TIME = My.Settings.WORK_TIME * 60
+        BREAK_TIME = My.Settings.BREAK_TIME * 60
+
+        alarm_stop = My.Settings.alarm_stop
+        alarm_start = My.Settings.alarm_start
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        config.Show()
+    End Sub
 End Class
 
